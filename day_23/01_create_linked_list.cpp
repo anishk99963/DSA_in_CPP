@@ -64,6 +64,17 @@ void print(Node* head){
     }cout<<"NULL"<<endl;
 }
 
+bool search(int target, Node* head){
+    Node* temp = head;
+
+    while(temp != NULL){
+        if(temp->data == target){
+            return true;
+        }
+        temp = temp->next;
+    }return false;
+}
+
 int getLen(Node* head){
     int len = 0;
     Node* temp = head;
@@ -122,6 +133,12 @@ int main(){
     insertAtPosition(3,1005,head,tail);
     print(head);
     
+    bool isFound = search(10, head);
+    if(isFound) {
+        cout << "Element found in the list!" << endl;
+    } else {
+        cout << "Elemen not found in the list!" << endl;
+    }
 
     
 
