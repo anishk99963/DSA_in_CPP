@@ -106,40 +106,75 @@ void insertAtPosition(int position, int value, Node* &head, Node* &tail){
     }
 }
 
+void deleteNodeLL(int position, Node* &head, Node* &tail){
+    // Check if the list is empty
+    if (head == NULL && tail == NULL) {
+        // cout << "List is empty" << endl;
+        return;
+    }
+
+    if (head == tail){
+        Node* temp = head;
+        head= NULL;
+        tail = NULL;
+        delete temp;
+    }
+
+    if(position == 1){
+        Node* temp = head;
+        head = temp->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    else{
+        Node* temp = head;
+        for(int i=0;i<position-2;i++){
+            temp = temp->next;
+        }
+        Node* NodeDelete = temp->next;
+        temp->next = NodeDelete->next;
+        NodeDelete->next = NULL;
+        delete NodeDelete;
+    }
+}
+
 int main(){
 
     Node* head = NULL;
     Node* tail = NULL;
     head = insertAtHead(10, head, tail);
-    print(head);
+    // print(head);
     head = insertAtHead(20, head, tail);
-    print(head);
+    // print(head);
     head = insertAtHead(30, head, tail);
-    print(head);
+    // print(head);
     head = insertAtHead(40, head, tail);
-    print(head);
+    // print(head);
 
     head = insertAtTail(101, head, tail);
-    print(head);
+    // print(head);
     head = insertAtTail(102, head, tail);
-    print(head);
+    // print(head);
     head = insertAtTail(103, head, tail);
-    print(head);
+    // print(head);
     head = insertAtTail(104, head, tail);
     print(head);
 
-    insertAtPosition(1,1002,head,tail);
-    print(head);
-    insertAtPosition(3,1005,head,tail);
-    print(head);
+    // insertAtPosition(1,1002,head,tail);
+    // // print(head);
+    // insertAtPosition(3,1005,head,tail);
+    // print(head);
     
-    bool isFound = search(10, head);
-    if(isFound) {
-        cout << "Element found in the list!" << endl;
-    } else {
-        cout << "Elemen not found in the list!" << endl;
-    }
+    // bool isFound = search(10, head);
+    // if(isFound) {
+    //     cout << "Element found in the list!" << endl;
+    // } else {
+    //     cout << "Elemen not found in the list!" << endl;
+    // }
 
+    
+    deleteNodeLL(8,head, tail);
+    print(head);
     
 
     // Node* first = new Node(10);
